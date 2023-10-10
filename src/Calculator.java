@@ -5,56 +5,64 @@ import java.util.Scanner;
 
 //Пример строки на вход: “100 + 13”, “27 / 3”, “7 !”, “4 ^ 3”, “35 ? 24”
 public class Calculator {
-    static int previousAnswer;
-    static boolean hasPreviousAnswer;
+    private static final Scanner SCANNER = new Scanner(System.in);
+    private static int previousAnswer;
+    private static boolean hasPreviousAnswer;
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Добро пожаловать в Калькулятор! Выберите действие:");
-        printMenu(scanner, hasPreviousAnswer);
-        scanner.close();
+        printMenu();
+        SCANNER.close();
     }
 
-    public static void printMenu (Scanner scanner, boolean hasPreviousAnswer){
+    public static void printMenu() {
         if (hasPreviousAnswer) {
-            System.out.println("1. Ввести пример\n" + "2. Продолжить работать с ответом предыдущего примера\n" + "3. Выход\n");
-            String input = scanner.nextLine();
+            System.out.println("1. Ввести пример\n" +
+                    "2. Продолжить работать с ответом предыдущего примера\n" +
+                    "3. Выход");
+            //String input = String.valueOf(SCANNER.nextInt());
+            int input = SCANNER.nextInt();
             switch (input) {
-                case "1":
-                    newExample(scanner);
+                case 1:
+                    newExample();
                     break;
-                case "2":
-                    continueWork(scanner);
+                case 2:
+                    continueWork();
                     break;
-                case "3":
+                case 3:
                     System.out.println("До свидания!");
                     break;
                 default:
                     System.out.println("Некорректный ввод");
-                    printMenu(scanner, true);
+                    printMenu();
             }
         } else {
-            System.out.println("1. Ввести пример\n" + "2. Выход\n");
-            String input = scanner.nextLine();
+            System.out.println("1. Ввести пример\n" + "2. Выход");
+            //String input = SCANNER.nextLine();
+            int input = SCANNER.nextInt();
             switch (input) {
-                case "1":
-                    newExample(scanner);
+                case 1:
+                    newExample();
                     break;
-                case "2":
+                case 2:
                     System.out.println("До свидания!");
                     break;
                 default:
                     System.out.println("Некорректный ввод");
-                    printMenu(scanner, false);
+                    printMenu();
             }
         }
     }
 
-    public static void newExample(Scanner scanner) {
+    public static void newExample() {
         System.out.println("Введите пример через пробел");
-        String example = scanner.nextLine();
+        String example = SCANNER.nextLine();
+        if ("".equals(example)) {
+            example = SCANNER.nextLine();
+        }
         String[] array;
-        if (example!= null && !example.isEmpty()) {
-             array = example.split(" ");
+        if (example != null && !example.isEmpty()) {
+            array = example.split(" ");
         } else return;
 
         int firstNumber;
@@ -62,114 +70,127 @@ public class Calculator {
 
         try {
             firstNumber = Integer.parseInt(array[0]);
-            if (array.length > 2){
+            if (array.length > 2) {
                 secondNumber = Integer.parseInt(array[2]);
             }
 
             switch (array[1]) {
                 case "+":
                     addition(firstNumber, secondNumber);
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
                     break;
                 case "-":
                     subtraction(firstNumber, secondNumber);
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
                     break;
                 case "*":
                     multiplication(firstNumber, secondNumber);
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
                     break;
                 case "/":
                     division(firstNumber, secondNumber);
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
                     break;
                 case "!":
                     factorial(firstNumber);
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
                     break;
                 case "^":
                     exponentiation(firstNumber, secondNumber);
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
                     break;
                 case "?":
                     comparison(firstNumber, secondNumber);
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
                     break;
                 default:
                     System.out.println("Введен некорректный пример");
-                    printMenu(scanner, hasPreviousAnswer);
+                    printMenu();
             }
         } catch (Exception exception) {
             System.out.println("Введен некорректный пример");
-            printMenu(scanner, hasPreviousAnswer);
+            printMenu();
         }
     }
 
-    public static void continueWork(Scanner scanner) {
-        System.out.println("1. Сложение\n + 2. Вычитание\n + 3. Умножение\n + 4. Деление\n + 5. Факториал\n + " +
-                "6. Возведение в степень\n + 7. Сравнение\n + 0. Назад\n");
-        String input = scanner.nextLine();
+    public static void continueWork() {
+        System.out.println("1. Сложение\n"
+                + "2. Вычитание\n"
+                + "3. Умножение\n"
+                + "4. Деление\n"
+                + "5. Факториал\n"
+                + "6. Возведение в степень\n"
+                + "7. Сравнение\n"
+                + "0. Назад");
+        String input = String.valueOf(SCANNER.nextInt());
         switch (input) {
             case "1":
                 System.out.println("Введите новое число");
-                addition(scanner.nextInt(), previousAnswer);
+                addition(SCANNER.nextInt(), previousAnswer);
+                printMenu();
                 break;
             case "2":
                 System.out.println("Введите новое число");
-                subtraction(scanner.nextInt(), previousAnswer);
+                subtraction(SCANNER.nextInt(), previousAnswer);
+                printMenu();
                 break;
             case "3":
                 System.out.println("Введите новое число");
-                multiplication(scanner.nextInt(), previousAnswer);
+                multiplication(SCANNER.nextInt(), previousAnswer);
+                printMenu();
                 break;
             case "4":
                 System.out.println("Введите новое число");
-                division(scanner.nextInt(), previousAnswer);
+                division(SCANNER.nextInt(), previousAnswer);
+                printMenu();
                 break;
             case "5":
                 factorial(previousAnswer);
+                printMenu();
                 break;
             case "6":
                 System.out.println("Введите степень");
-                exponentiation(previousAnswer, scanner.nextInt());
+                exponentiation(previousAnswer, SCANNER.nextInt());
+                printMenu();
                 break;
             case "7":
                 System.out.println("Введите новое число");
-                comparison(scanner.nextInt(), previousAnswer);
+                comparison(SCANNER.nextInt(), previousAnswer);
+                printMenu();
                 break;
             case "0":
                 System.out.println("Введите новое число");
-                printMenu(scanner, hasPreviousAnswer);
+                printMenu();
                 break;
             default:
                 System.out.println("Некорректный ввод");
-                printMenu(scanner, hasPreviousAnswer);
+                printMenu();
         }
     }
 
     public static void addition(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber + secondNumber;
         hasPreviousAnswer = true;
-        System.out.println("\"+\": " + firstNumber + " + " + secondNumber + " = " + previousAnswer + "\n");
+        System.out.println("\"+\": " + firstNumber + " + " + secondNumber + " = " + previousAnswer);
     }
 
     public static void subtraction(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber - secondNumber;
         hasPreviousAnswer = true;
-        System.out.println("\"-\": " + firstNumber + " - " + secondNumber + " = " + previousAnswer + "\n");
+        System.out.println("\"-\": " + firstNumber + " - " + secondNumber + " = " + previousAnswer);
     }
 
     public static void multiplication(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber * secondNumber;
         hasPreviousAnswer = true;
-        System.out.println("\"*\": " + firstNumber + " * " + secondNumber + " = " + previousAnswer + "\n");
+        System.out.println("\"*\": " + firstNumber + " * " + secondNumber + " = " + previousAnswer);
     }
 
     public static void division(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber / secondNumber;
         hasPreviousAnswer = true;
         System.out.println();
-        System.out.println("\"/\": " + firstNumber + " / " + secondNumber + " = " + previousAnswer + "\n");
+        System.out.println("\"/\": " + firstNumber + " / " + secondNumber + " = " + previousAnswer);
     }
 
     public static void factorial(int number) {
@@ -182,18 +203,18 @@ public class Calculator {
             number--;
         }
         hasPreviousAnswer = true;
-        System.out.print("1 = " + previousAnswer + "\n");
+        System.out.print("1 = " + previousAnswer);
     }
 
-    public static void exponentiation(int firstNumber, int secondNumber){
+    public static void exponentiation(int firstNumber, int secondNumber) {
         previousAnswer = (int) Math.pow(firstNumber, secondNumber);
         hasPreviousAnswer = true;
-        System.out.println("\"^\": " + firstNumber + " ^ " + secondNumber + " = " + previousAnswer + "\n");
+        System.out.println("\"^\": " + firstNumber + " ^ " + secondNumber + " = " + previousAnswer);
     }
 
-    public static void comparison(int firstNumber, int secondNumber){
+    public static void comparison(int firstNumber, int secondNumber) {
         previousAnswer = Math.max(firstNumber, secondNumber);
         hasPreviousAnswer = true;
-        System.out.println("\"?\": " + firstNumber + " ? " + secondNumber + " = " + previousAnswer + "\n");
+        System.out.println("\"?\": " + firstNumber + " ? " + secondNumber + " = " + previousAnswer);
     }
 }
