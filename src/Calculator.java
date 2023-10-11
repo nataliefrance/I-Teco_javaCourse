@@ -1,13 +1,9 @@
 import java.util.Scanner;
 
-//Список операций - (сложение (+), вычитание (-), умножение (*), деление (/), факториал
-//(!), возведение в степень (^) и сравнение двух чисел (?))
-
-//Пример строки на вход: “100 + 13”, “27 / 3”, “7 !”, “4 ^ 3”, “35 ? 24”
 public class Calculator {
     private static final Scanner SCANNER = new Scanner(System.in);
-    private static int previousAnswer;
-    private static boolean hasPreviousAnswer;
+    private static Integer previousAnswer;
+    //private static boolean hasPreviousAnswer;
 
     public static void main(String[] args) {
         System.out.println("Добро пожаловать в Калькулятор! Выберите действие:");
@@ -16,11 +12,11 @@ public class Calculator {
     }
 
     public static void printMenu() {
-        if (hasPreviousAnswer) {
+        if (previousAnswer != null) {
             System.out.println("1. Ввести пример\n" +
                     "2. Продолжить работать с ответом предыдущего примера\n" +
                     "3. Выход");
-            //String input = String.valueOf(SCANNER.nextInt());
+
             int input = SCANNER.nextInt();
             switch (input) {
                 case 1:
@@ -38,7 +34,6 @@ public class Calculator {
             }
         } else {
             System.out.println("1. Ввести пример\n" + "2. Выход");
-            //String input = SCANNER.nextLine();
             int input = SCANNER.nextInt();
             switch (input) {
                 case 1:
@@ -122,43 +117,44 @@ public class Calculator {
                 + "6. Возведение в степень\n"
                 + "7. Сравнение\n"
                 + "0. Назад");
-        String input = String.valueOf(SCANNER.nextInt());
+        //String input = String.valueOf(SCANNER.nextInt());
+        int input = SCANNER.nextInt();
         switch (input) {
-            case "1":
+            case 1:
                 System.out.println("Введите новое число");
                 addition(SCANNER.nextInt(), previousAnswer);
                 printMenu();
                 break;
-            case "2":
+            case 2:
                 System.out.println("Введите новое число");
                 subtraction(SCANNER.nextInt(), previousAnswer);
                 printMenu();
                 break;
-            case "3":
+            case 3:
                 System.out.println("Введите новое число");
                 multiplication(SCANNER.nextInt(), previousAnswer);
                 printMenu();
                 break;
-            case "4":
+            case 4:
                 System.out.println("Введите новое число");
                 division(SCANNER.nextInt(), previousAnswer);
                 printMenu();
                 break;
-            case "5":
+            case 5:
                 factorial(previousAnswer);
                 printMenu();
                 break;
-            case "6":
+            case 6:
                 System.out.println("Введите степень");
                 exponentiation(previousAnswer, SCANNER.nextInt());
                 printMenu();
                 break;
-            case "7":
+            case 7:
                 System.out.println("Введите новое число");
                 comparison(SCANNER.nextInt(), previousAnswer);
                 printMenu();
                 break;
-            case "0":
+            case 0:
                 System.out.println("Введите новое число");
                 printMenu();
                 break;
@@ -170,25 +166,21 @@ public class Calculator {
 
     public static void addition(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber + secondNumber;
-        hasPreviousAnswer = true;
         System.out.println("\"+\": " + firstNumber + " + " + secondNumber + " = " + previousAnswer);
     }
 
     public static void subtraction(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber - secondNumber;
-        hasPreviousAnswer = true;
         System.out.println("\"-\": " + firstNumber + " - " + secondNumber + " = " + previousAnswer);
     }
 
     public static void multiplication(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber * secondNumber;
-        hasPreviousAnswer = true;
         System.out.println("\"*\": " + firstNumber + " * " + secondNumber + " = " + previousAnswer);
     }
 
     public static void division(int firstNumber, int secondNumber) {
         previousAnswer = firstNumber / secondNumber;
-        hasPreviousAnswer = true;
         System.out.println();
         System.out.println("\"/\": " + firstNumber + " / " + secondNumber + " = " + previousAnswer);
     }
@@ -202,19 +194,16 @@ public class Calculator {
             System.out.print(number + " * ");
             number--;
         }
-        hasPreviousAnswer = true;
         System.out.print("1 = " + previousAnswer);
     }
 
     public static void exponentiation(int firstNumber, int secondNumber) {
         previousAnswer = (int) Math.pow(firstNumber, secondNumber);
-        hasPreviousAnswer = true;
         System.out.println("\"^\": " + firstNumber + " ^ " + secondNumber + " = " + previousAnswer);
     }
 
     public static void comparison(int firstNumber, int secondNumber) {
         previousAnswer = Math.max(firstNumber, secondNumber);
-        hasPreviousAnswer = true;
         System.out.println("\"?\": " + firstNumber + " ? " + secondNumber + " = " + previousAnswer);
     }
 }
