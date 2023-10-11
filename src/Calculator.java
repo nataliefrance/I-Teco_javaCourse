@@ -3,14 +3,12 @@ import java.util.Scanner;
 public class Calculator {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static Integer previousAnswer;
-    //private static boolean hasPreviousAnswer;
 
     public static void main(String[] args) {
         System.out.println("Добро пожаловать в Калькулятор! Выберите действие:");
         printMenu();
         SCANNER.close();
     }
-
     public static void printMenu() {
         if (previousAnswer != null) {
             System.out.println("1. Ввести пример\n" +
@@ -56,7 +54,7 @@ public class Calculator {
             example = SCANNER.nextLine();
         }
         String[] array;
-        if (example != null && !example.isEmpty()) {
+        if (example != null) {
             array = example.split(" ");
         } else return;
 
@@ -117,7 +115,7 @@ public class Calculator {
                 + "6. Возведение в степень\n"
                 + "7. Сравнение\n"
                 + "0. Назад");
-        //String input = String.valueOf(SCANNER.nextInt());
+
         int input = SCANNER.nextInt();
         switch (input) {
             case 1:
@@ -194,7 +192,7 @@ public class Calculator {
             System.out.print(number + " * ");
             number--;
         }
-        System.out.print("1 = " + previousAnswer);
+        System.out.println("1 = " + previousAnswer);
     }
 
     public static void exponentiation(int firstNumber, int secondNumber) {
