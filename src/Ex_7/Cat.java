@@ -1,10 +1,13 @@
 package Ex_7;
 
-public class Cat extends Animal{
+public class Cat extends Animal {
 
     private String mood;
     int hungry;
     protected int energy;
+
+    public Cat() {
+    }
 
     public Cat(int quantityOfLegs, int age, int weight, boolean hasFur, String mood, int hungry, int energy) {
         super(quantityOfLegs, age, weight, hasFur);
@@ -27,8 +30,6 @@ public class Cat extends Animal{
     }
 
     public void meow() {
-        System.out.println("Мяу");
+        System.out.println("Мяу!");
     }
-
-
 }
