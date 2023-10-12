@@ -16,10 +16,10 @@ public class Dog extends Animal {
         this.energy = energy;
     }
 
-    public Dog(int quantityOfLegs, int age, int weight, boolean hasFur, String mood, int hungry, int energy) {
-        super(quantityOfLegs, age, weight, hasFur);
+    public Dog(int quantityOfLegs, int hungry, int age, int weight, boolean hasFur, String mood, int hungry1, int energy) {
+        super(quantityOfLegs, hungry, age, weight, hasFur);
         this.mood = mood;
-        this.hungry = hungry;
+        this.hungry = hungry1;
         this.energy = energy;
     }
 

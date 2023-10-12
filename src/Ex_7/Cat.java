@@ -3,16 +3,16 @@ package Ex_7;
 public class Cat extends Animal {
 
     private String mood;
-    int hungry;
+    String name;
     protected int energy;
 
     public Cat() {
     }
 
-    public Cat(int quantityOfLegs, int age, int weight, boolean hasFur, String mood, int hungry, int energy) {
-        super(quantityOfLegs, age, weight, hasFur);
+    public Cat(int quantityOfLegs, int hungry, int age, int weight, boolean hasFur, String mood, String name, int energy) {
+        super(quantityOfLegs, hungry, age, weight, hasFur);
         this.mood = mood;
-        this.hungry = hungry;
+        this.name = name;
         this.energy = energy;
     }
 
