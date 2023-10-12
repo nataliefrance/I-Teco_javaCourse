@@ -10,6 +10,12 @@ public abstract class Animal {
     public Animal(){
     }
 
+    public Animal(int age, int weight, boolean hasFur) {
+        this.age = age;
+        this.weight = weight;
+        this.hasFur = hasFur;
+    }
+
     public Animal(int quantityOfLegs, int age, int weight, boolean hasFur) {
         this.quantityOfLegs = quantityOfLegs;
         this.age = age;
