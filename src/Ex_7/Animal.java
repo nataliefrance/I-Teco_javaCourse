@@ -16,11 +16,12 @@ public abstract class Animal {
         this.weight = weight;
         this.hasFur = hasFur;
     }
-    private void eat() {
+
+    public void eat() {
         System.out.println("Животное поело.");
     }
 
-    void pee() {
+    protected void pee() {
         System.out.println("Животное сходило в кусты.");
     }
 
@@ -28,24 +29,8 @@ public abstract class Animal {
         System.out.println("Животное уснуло.");
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
     public int getQuantityOfLegs() {
         return quantityOfLegs;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
     }
 
     public void setQuantityOfLegs(int quantityOfLegs) {
