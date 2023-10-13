@@ -1,14 +1,18 @@
 package Ex_8;
 
 public enum Season {
-    WINTER("white"),
-    SPRING("blue"),
-    SUMMER("green"),
-    AUTUMN("yellow");
+    WINTER("белый"),
+    SPRING("голубой"),
+    SUMMER("зеленый"),
+    AUTUMN("желтый");
 
     private String color;
 
     Season (String color) {
         this.color = color;
+    }
+
+    public String getColor() {
+        return color;
     }
 }
