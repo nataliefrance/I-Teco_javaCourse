@@ -24,7 +24,7 @@ public class Employee extends Person implements Printable, SeasonHandler {
 
     @Override
     public void printSeason(Season season) {
-        System.out.println("У сотрудник сейчас " + season + ", цвет " + season.getColor());
+        System.out.println("У сотрудника сейчас " + season + ", цвет " + season.getColor());
     }
 
     public void setSalary(int salary) {
