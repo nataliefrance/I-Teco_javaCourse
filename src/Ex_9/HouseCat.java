@@ -17,4 +17,9 @@ public class HouseCat extends Cat implements Domestic{
     public void lieOnKnees() {
         System.out.println("Котик " + this.getName() + " лежит на коленках.");
     }
+
+    @Override
+    public String toString() {
+        return "кот " + getName() + ", возраст: " + getAge() + ", настроение: " + getMood();
+    }
 }
