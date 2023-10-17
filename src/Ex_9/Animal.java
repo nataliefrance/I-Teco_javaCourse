@@ -14,10 +14,10 @@ public abstract class Animal {
     public void eat() {
         System.out.println("Животное поело.");
     }
-    protected void pee() {
+    public void pee() {
         System.out.println("Животное сходило в кусты.");
     }
-    protected void sleep() {
+    public void sleep() {
         System.out.println("Животное уснуло.");
     }
 

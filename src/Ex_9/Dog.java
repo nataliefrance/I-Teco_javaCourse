@@ -31,6 +31,7 @@ public class Dog extends Animal{
     @Override
     public void eat() {
         System.out.println("Собака съела кость.");
+        setMood("Отличное");
     }
 
     public void bark() {
