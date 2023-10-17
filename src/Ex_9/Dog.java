@@ -1,5 +1,7 @@
 package Ex_9;
 
+import java.util.Objects;
+
 public class Dog extends Animal{
     private String mood;
     private String name;
@@ -33,5 +35,23 @@ public class Dog extends Animal{
 
     public void bark() {
         System.out.println("Гав!");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dog dog = (Dog) o;
+        return Objects.equals(mood, dog.mood) && Objects.equals(name, dog.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mood, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Собака " + getName() + ", возраст: " + getAge() + ", настроение: " + getMood();
     }
 }

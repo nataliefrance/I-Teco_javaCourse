@@ -20,15 +20,12 @@ public class House<T extends Domestic> {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (!(obj instanceof House))
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (!(obj instanceof House)) return false;
 
         House house = (House) obj;
-        return this.domestic == ((House<?>) obj).domestic;
+        return this.domestic == house.domestic;
     }
 
     @Override

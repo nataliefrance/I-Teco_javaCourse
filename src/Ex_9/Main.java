@@ -5,6 +5,7 @@ public class Main {
         HouseCat catVasiliy = new HouseCat(5, "Очень плохое", "Василий");
         HouseDog dogPryadka = new HouseDog(3, "Отличное", "Прядка");
 
+
         House<HouseCat> house1 = new House<>(catVasiliy);
         House<HouseDog> house2 = new House<>(dogPryadka);
         House<HouseDog> house3 = new House<>(dogPryadka);
