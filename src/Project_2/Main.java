@@ -8,19 +8,50 @@ public class Main {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static ArrayList<UserDetails> users = new ArrayList<>();
     private static UserDetails currentUser;
+    private static ArrayList<Note> notes = new ArrayList<>();
 
     public static void main(String[] args) {
         initialize();
+        login();
+        printMainMenu();
+
+
+
+        SCANNER.close();
+    }
+
+    private static void printMainMenu(){
+        System.out.println("1. Выполнить вход под другим пользователем\n" +
+                "2. Создать новую заметку\n" +
+                "3. Поиск заметки по названию");
+
+        int input = SCANNER.nextInt();
+        switch (input) {
+            case 1:
+                login();
+                break;
+            case 2:
+                createNote();
+                break;
+            case 3:
+                //searchNote();
+                break;
+            default:
+                System.out.println("Некорректный ввод");
+        }
+    }
+
+    private static void createNote(){
+
+    }
+
+    private static void login(){
         System.out.println("Введите через пробел логин и пароль:");
         try {
             currentUser = checkLoginAndPassword(SCANNER.nextLine());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
-
-        SCANNER.close();
     }
 
     private static UserDetails checkLoginAndPassword(String input) throws Exception{
