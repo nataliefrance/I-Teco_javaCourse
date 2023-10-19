@@ -11,6 +11,14 @@ public abstract class Note {
         this.author = author;
     }
 
+    @Override
+    public String toString() {
+        return "Заметка \"" + name +
+                "\"\nАвтор: " + author +
+                " \nТипа заметки: " + typeOfNote.getDescription() +
+                " \nСодержание: " + body + "\n";
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -19,19 +27,7 @@ public abstract class Note {
         this.body = body;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public TypeOfNote getTypeOfNote() {
-        return typeOfNote;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public String getBody() {
-        return body;
     }
 }

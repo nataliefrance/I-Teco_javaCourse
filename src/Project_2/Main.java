@@ -18,7 +18,6 @@ public class Main {
         }
 
 
-
         SCANNER.close();
     }
 
@@ -30,26 +29,79 @@ public class Main {
         int input = SCANNER.nextInt();
         switch (input) {
             case 1:
-                if (login()){
+                if (login()) {
                     printMainMenu();
                 }
                 break;
             case 2:
-                createNote();
+                if (currentUser.getRole() == Role.USER) {
+                    System.out.println("Недостаточно прав доступа");
+                    printMainMenu();
+                } else createNote();
                 break;
             case 3:
-                //searchNote();
+                Note note = searchNote();
+                if (currentUser.getRole() != Role.USER) {
+                    printNoteMenu(note);
+                } else printMainMenu();
                 break;
             default:
                 System.out.println("Некорректный ввод");
         }
     }
 
+    private static void printNoteMenu(Note note) {
+        System.out.println("1. Изменить название\n" +
+                "2. Заменить слово в заметке\n" +
+                "3. Изменить содержание\n" +
+                "4. Удалить заметку");
+        int input = SCANNER.nextInt();
+        switch (input) {
+            case 1:
+                changeNoteName(note);
+                break;
+            case 2:
+                //changeNoteWord();
+                break;
+            case 3:
+                changeNoteBody(note);
+                break;
+            case 4:
+                deleteNote(note);
+                break;
+            default:
+                System.out.println("Некорректный ввод");
+        }
+
+    }
+
+    private static void changeNoteName(Note note) {
+        System.out.println("Введите новое название:");
+        String name = SCANNER.nextLine();
+        if ("".equals(name)) {
+            name = SCANNER.nextLine();
+        }
+        note.setName(name);
+    }
+
+    private static void changeNoteBody(Note note) {
+        System.out.println("Введите новое содержание:");
+        String body = SCANNER.nextLine();
+        if ("".equals(body)) {
+            body = SCANNER.nextLine();
+        }
+        note.setBody(body);
+    }
+
+    private static void deleteNote(Note note) {
+        notes.remove(note);
+    }
+
     private static void createNote() {
         System.out.println("Выберите тип заметки:\n" +
-                        "1. Рецепты\n" +
-                        "2. Список дел\n" +
-                        "3. Список покупок");
+                "1. Рецепты\n" +
+                "2. Список дел\n" +
+                "3. Список покупок");
         int input = SCANNER.nextInt();
         Note note = null;
 
@@ -84,6 +136,22 @@ public class Main {
         notes.add(note);
 
         System.out.println("Заметка " + note.getName() + " создана.");
+    }
+
+    private static Note searchNote() {
+        System.out.println("Введите название заметки:");
+        String name = SCANNER.nextLine();
+        if ("".equals(name)) {
+            name = SCANNER.nextLine();
+        }
+        Note resultNote = null;
+        for (Note note : notes) {
+            if (name.equals(note.getName())) {
+                resultNote = note;
+                System.out.println(note);
+            } //Написать проверку на null
+        }
+        return resultNote;
     }
 
     private static boolean login() {
@@ -127,9 +195,9 @@ public class Main {
         users.add(new UserDetails(Role.MODERATOR, "Evgeniy", "321", "Евгений"));
         users.add(new UserDetails(Role.USER, "Mila", "111", "Мила"));
 
-        Note note = new Recipe("Natalya");
+        Note note = new Recipe("Наталья");
         note.setName("Осенний пирог");
-        note.setBody("2 яйца, тыква, мука, разрыхлитель. Всё перемешать и выпекать в духовке 30 минут.");
+        note.setBody("Яйца, тыква, мука, разрыхлитель, сахар. Всё перемешать и выпекать в духовке 30 минут.");
         notes.add(note);
     }
 }
