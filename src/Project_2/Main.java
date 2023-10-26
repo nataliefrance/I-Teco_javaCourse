@@ -60,7 +60,7 @@ public class Main {
                 NoteService.changeNoteName(note);
                 break;
             case 2:
-                //changeNoteWord();
+                NoteService.changeNoteWord(note);
                 break;
             case 3:
                 NoteService.changeNoteBody(note);

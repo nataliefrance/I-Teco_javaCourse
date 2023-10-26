@@ -19,6 +19,28 @@ public class NoteService {
         note.setBody(body);
     }
 
+    protected static void changeNoteWord(Note note) {
+        System.out.println("Какое слово Вы хотите заменить?");
+        String oldWord = Main.SCANNER.nextLine();
+        if ("".equals(oldWord)) {
+            oldWord = Main.SCANNER.nextLine();
+        }
+        if (oldWord == null) {
+            oldWord = Main.SCANNER.nextLine();
+        }
+
+        System.out.println("На какое слово меняем?");
+        String newWord = Main.SCANNER.nextLine();
+        if ("".equals(newWord)) {
+            newWord = Main.SCANNER.nextLine();
+        }
+        if (oldWord == null) {
+            oldWord = Main.SCANNER.nextLine();
+        }
+        String newBody = note.getBody().replaceAll(oldWord, newWord);
+        note.setBody(newBody);
+    }
+
     protected static void deleteNote(Note note) {
         Main.notes.remove(note);
     }
@@ -75,7 +97,7 @@ public class NoteService {
             if (name.equals(note.getName())) {
                 resultNote = note;
                 System.out.println(note);
-            } //Написать проверку на null
+            }
         }
         return resultNote;
     }
