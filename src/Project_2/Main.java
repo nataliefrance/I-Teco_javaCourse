@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         initialize();
 
-        if (login()) {
+        if (UserService.login()) {
             printMainMenu();
         }
 
@@ -28,7 +28,7 @@ public class Main {
         int input = SCANNER.nextInt();
         switch (input) {
             case 1:
-                if (login()) {
+                if (UserService.login()) {
                     printMainMenu();
                 }
                 break;
@@ -72,42 +72,6 @@ public class Main {
                 System.out.println("Некорректный ввод");
         }
 
-    }
-
-    private static boolean login() {
-        System.out.println("Введите через пробел логин и пароль:");
-        try {
-            currentUser = checkLoginAndPassword(SCANNER.nextLine());
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return false;
-    }
-
-    private static UserDetails checkLoginAndPassword(String input) throws Exception {
-        if (input == null) {
-            throw new WrongLoginOrPasswordException("Неправильный логин и пароль");
-        }
-
-        if ("".equals(input)) {
-            input = SCANNER.nextLine();
-        }
-
-        String[] array = input.split(" ");
-        UserDetails newUser = null;
-
-        for (UserDetails user : users) {
-            if (user.getLogin().equals(array[0]) && user.getPassword().equals(array[1])) {
-                newUser = user;
-            }
-        }
-
-        if (newUser == null) {
-            throw new WrongLoginOrPasswordException("Неправильный логин и пароль");
-        }
-
-        return newUser;
     }
 
     private static void initialize() {
