@@ -16,11 +16,9 @@ public class UserService {
         if (input == null) {
             throw new WrongLoginOrPasswordException("Неправильный логин и пароль");
         }
-
         if ("".equals(input)) {
             input = Main.SCANNER.nextLine();
         }
-
         String[] array = input.split(" ");
         UserDetails newUser = null;
 
@@ -29,11 +27,9 @@ public class UserService {
                 newUser = user;
             }
         }
-
         if (newUser == null) {
             throw new WrongLoginOrPasswordException("Неправильный логин и пароль");
         }
-
         return newUser;
     }
 }

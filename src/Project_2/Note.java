@@ -11,6 +11,7 @@ public abstract class Note {
         this.author = author;
     }
 
+
     @Override
     public String toString() {
         return "Заметка \"" + name +

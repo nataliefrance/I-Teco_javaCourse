@@ -1,13 +1,18 @@
 package Project_2;
 
 public class NoteService {
-    protected static void changeNoteName(Note note) {
+
+    protected static void changeNoteName(Note note) throws EmptyNoteNameException{
         System.out.println("Введите новое название:");
         String name = Main.SCANNER.nextLine();
         if ("".equals(name)) {
             name = Main.SCANNER.nextLine();
         }
+        if ("".equals(name)){
+            throw new EmptyNoteNameException("Название заметки не может быть пустым.");
+        }
         note.setName(name);
+        System.out.println("Готово.");
     }
 
     protected static void changeNoteBody(Note note) {
@@ -17,6 +22,7 @@ public class NoteService {
             body = Main.SCANNER.nextLine();
         }
         note.setBody(body);
+        System.out.println("Готово.");
     }
 
     protected static void changeNoteWord(Note note) {
@@ -25,7 +31,8 @@ public class NoteService {
         if ("".equals(oldWord)) {
             oldWord = Main.SCANNER.nextLine();
         }
-        if (oldWord == null) {
+        while (!note.getBody().contains(oldWord)) {
+            System.out.println("Такого слова нет. Введите слово ещё раз:");
             oldWord = Main.SCANNER.nextLine();
         }
 
@@ -34,18 +41,16 @@ public class NoteService {
         if ("".equals(newWord)) {
             newWord = Main.SCANNER.nextLine();
         }
-        if (oldWord == null) {
-            oldWord = Main.SCANNER.nextLine();
-        }
         String newBody = note.getBody().replaceAll(oldWord, newWord);
         note.setBody(newBody);
+        System.out.println("Готово.");
     }
 
     protected static void deleteNote(Note note) {
         Main.notes.remove(note);
     }
 
-    protected static void createNote() {
+    protected static void createNote() throws EmptyNoteNameException{
         System.out.println("Выберите тип заметки:\n" +
                 "1. Рецепты\n" +
                 "2. Список дел\n" +
@@ -73,6 +78,10 @@ public class NoteService {
         if ("".equals(name)) {
             name = Main.SCANNER.nextLine();
         }
+
+        if ("".equals(name)) {
+            throw new EmptyNoteNameException("Название заметки не может быть пустым.");
+        }
         note.setName(name);
 
         System.out.println("Напишите заметку:");
@@ -86,7 +95,7 @@ public class NoteService {
         System.out.println("Заметка " + note.getName() + " создана.");
     }
 
-    protected static Note searchNote() {
+    protected static Note searchNote(){
         System.out.println("Введите название заметки:");
         String name = Main.SCANNER.nextLine();
         if ("".equals(name)) {
@@ -94,7 +103,7 @@ public class NoteService {
         }
         Note resultNote = null;
         for (Note note : Main.notes) {
-            if (name.equals(note.getName())) {
+            if (name.equalsIgnoreCase(note.getName())) {
                 resultNote = note;
                 System.out.println(note);
             }

@@ -16,7 +16,6 @@ public class Main {
         if (UserService.login()) {
             printMainMenu();
         }
-
         SCANNER.close();
     }
 
@@ -36,10 +35,21 @@ public class Main {
                 if (currentUser.getRole() == Role.USER) {
                     System.out.println("Недостаточно прав доступа");
                     printMainMenu();
-                } else NoteService.createNote();
+                } else {
+                    try {
+                        NoteService.createNote();
+                    } catch (EmptyNoteNameException e) {
+                        System.out.println(e.getMessage());
+                    }
+                    printMainMenu();
+                }
                 break;
             case 3:
                 Note note = NoteService.searchNote();
+                while (note == null) {
+                    System.out.println("Такой заметки нет.");
+                    note = NoteService.searchNote();
+                }
                 if (currentUser.getRole() != Role.USER) {
                     printNoteMenu(note);
                 } else printMainMenu();
@@ -57,21 +67,28 @@ public class Main {
         int input = SCANNER.nextInt();
         switch (input) {
             case 1:
-                NoteService.changeNoteName(note);
+                try {
+                    NoteService.changeNoteName(note);
+                } catch (EmptyNoteNameException e) {
+                    System.out.println(e.getMessage());
+                }
+                printMainMenu();
                 break;
             case 2:
                 NoteService.changeNoteWord(note);
+                printMainMenu();
                 break;
             case 3:
                 NoteService.changeNoteBody(note);
+                printMainMenu();
                 break;
             case 4:
                 NoteService.deleteNote(note);
+                printMainMenu();
                 break;
             default:
                 System.out.println("Некорректный ввод");
         }
-
     }
 
     private static void initialize() {
@@ -80,8 +97,8 @@ public class Main {
         users.add(new UserDetails(Role.USER, "Mila", "111", "Мила"));
 
         Note note = new Recipe("Наталья");
-        note.setName("Осенний пирог");
-        note.setBody("Яйца, тыква, мука, разрыхлитель, сахар. Всё перемешать и выпекать в духовке 30 минут.");
+        note.setName("Пирог");
+        note.setBody("Яйца, мука, разрыхлитель, сахар. Всё перемешать и выпекать в духовке 30 минут.");
         notes.add(note);
     }
 }
