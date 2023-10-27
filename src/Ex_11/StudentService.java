@@ -7,7 +7,8 @@ import java.util.TreeSet;
 
 public class StudentService {
     static Student emptyStudent = new Student("no_name", "no_surname", 0, Subject.DEFAULT);
-    static Comparator comparator = new ClassComparator();
+    static Comparator classComparator = new ClassComparator();
+    static Comparator surnameComparator = new SurnameComparator();
 
     static Student findStudent(String surname) {
         if ("".equals(surname)) {
@@ -38,7 +39,7 @@ public class StudentService {
     }
 
     static void sortByClass() {
-        Set<Student> sortByClassSet = new TreeSet<>(comparator);
+        TreeSet<Student> sortByClassSet = new TreeSet<>(classComparator.thenComparing(surnameComparator));
         sortByClassSet.addAll(Main.students);
         for (Student student : sortByClassSet) {
             System.out.println(student);

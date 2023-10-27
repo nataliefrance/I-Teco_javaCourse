@@ -57,7 +57,7 @@ public class Main {
                 System.out.println("До свидания!");
                 break;
             default:
-                System.out.println("Некорректный ввод");
+                System.out.println("Некорректный ввод\n");
                 printMenu();
         }
     }
@@ -65,7 +65,7 @@ public class Main {
     private static void initialize() {
         Student student1 = new Student("Vasya", "Pupkin", 1, Subject.GYMNASTICS);
         Student student2 = new Student("Ekaterina", "Great", 2, Subject.GEOGRAPHY);
-        Student student3 = new Student("Frenk", "Gerbert", 5, Subject.HISTORY);
+        Student student3 = new Student("Frenk", "Gerbert", 1, Subject.HISTORY);
         Student student4 = new Student("Ludmila", "Petranovskaya", 3, Subject.MATH);
         Student student5 = new Student("Ilon", "Mask", 4, Subject.PHYSICS);
         Collections.addAll(students, student1, student2, student3, student4, student5);
