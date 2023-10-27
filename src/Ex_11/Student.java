@@ -15,6 +15,10 @@ public class Student implements Comparable<Student> {
         this.favoriteSubject = favoriteSubject;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getSurname() {
         return surname;
     }

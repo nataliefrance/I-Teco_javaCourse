@@ -1,6 +1,8 @@
 package Ex_11;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.TreeSet;
 
 public class Main {
     static final TreeSet<Student> students = new TreeSet<>();
@@ -27,7 +29,10 @@ public class Main {
             case 1:
                 System.out.println("Введите фамилию:");
                 String surname = SCANNER.nextLine();
-                StudentService.findStudent(surname);
+                Student student = StudentService.findStudent(surname);
+                if (student.equals(StudentService.emptyStudent)) {
+                    System.out.println("Такой студент не найден.\n");
+                }
                 printMenu();
                 break;
             case 2:
@@ -43,7 +48,9 @@ public class Main {
                 printMenu();
                 break;
             case 5:
-                //StudentService.deleteStudent();
+                System.out.println("Введите фамилию студента, которого хотите удалить из журнала:");
+                String studentSurname = SCANNER.nextLine();
+                StudentService.deleteStudent(studentSurname);
                 printMenu();
                 break;
             case 6:
@@ -58,7 +65,7 @@ public class Main {
     private static void initialize() {
         Student student1 = new Student("Vasya", "Pupkin", 1, Subject.GYMNASTICS);
         Student student2 = new Student("Ekaterina", "Great", 2, Subject.GEOGRAPHY);
-        Student student3 = new Student("Frenk", "Gerbert", 1, Subject.HISTORY);
+        Student student3 = new Student("Frenk", "Gerbert", 5, Subject.HISTORY);
         Student student4 = new Student("Ludmila", "Petranovskaya", 3, Subject.MATH);
         Student student5 = new Student("Ilon", "Mask", 4, Subject.PHYSICS);
         Collections.addAll(students, student1, student2, student3, student4, student5);
