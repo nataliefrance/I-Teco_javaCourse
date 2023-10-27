@@ -4,6 +4,7 @@ public enum Subject {
     MATH("Математика"),
     GEOGRAPHY("География"),
     PHYSICS("Физика"),
+    GYMNASTICS("Гимнастика"),
     HISTORY("История");
 
     private final String name;
