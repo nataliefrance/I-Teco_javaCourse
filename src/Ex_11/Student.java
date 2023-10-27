@@ -2,7 +2,7 @@ package Ex_11;
 
 import java.util.Objects;
 
-public class Student implements Comparable<Student>{
+public class Student implements Comparable<Student> {
     private final String name;
     private String surname;
     private int classNumber;
@@ -33,7 +33,7 @@ public class Student implements Comparable<Student>{
 
     @Override
     public String toString() {
-        return "Студент " + name + " " + surname +
+        return name + " " + surname +
                 ", класс №" + classNumber +
                 ", любимый предмет " + favoriteSubject.getName();
     }

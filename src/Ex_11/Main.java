@@ -1,11 +1,9 @@
 package Ex_11;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    static final HashSet<Student> students = new HashSet<>();
+    static final TreeSet<Student> students = new TreeSet<>();
     static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -33,16 +31,20 @@ public class Main {
                 printMenu();
                 break;
             case 2:
-                //StudentService.sortBySurname();
+                StudentService.printBySurname();
+                printMenu();
                 break;
             case 3:
-                //StudentService.reverseSortBySurname();
+                StudentService.reversePrintBySurname();
+                printMenu();
                 break;
             case 4:
                 //StudentService.sortByClass();
+                printMenu();
                 break;
             case 5:
                 //StudentService.deleteStudent();
+                printMenu();
                 break;
             case 6:
                 System.out.println("До свидания!");
