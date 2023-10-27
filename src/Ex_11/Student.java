@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Student implements Comparable<Student> {
     private final String name;
-    private String surname;
-    private int classNumber;
-    private Subject favoriteSubject;
+    private final String surname;
+    private final int classNumber;
+    private final Subject favoriteSubject;
 
     public Student(String name, String surname, int classNumber, Subject favoriteSubject) {
         this.name = name;
@@ -15,20 +15,12 @@ public class Student implements Comparable<Student> {
         this.favoriteSubject = favoriteSubject;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setClassNumber(int classNumber) {
-        this.classNumber = classNumber;
-    }
-
-    public void setFavoriteSubject(Subject favoriteSubject) {
-        this.favoriteSubject = favoriteSubject;
-    }
-
     public String getSurname() {
         return surname;
+    }
+
+    public int getClassNumber() {
+        return classNumber;
     }
 
     @Override

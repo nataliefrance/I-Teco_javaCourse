@@ -39,7 +39,7 @@ public class Main {
                 printMenu();
                 break;
             case 4:
-                //StudentService.sortByClass();
+                StudentService.sortByClass();
                 printMenu();
                 break;
             case 5:

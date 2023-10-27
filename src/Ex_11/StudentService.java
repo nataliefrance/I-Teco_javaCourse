@@ -1,14 +1,16 @@
 package Ex_11;
 
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class StudentService {
     static Student emptyStudent = new Student("noname", "nosurname", 0, Subject.DEFAULT);
+    static Comparator comparator = new ClassComparator();
 
-    static Student findStudent(String surname){
-        if ("".equals(surname)){
+    static Student findStudent(String surname) {
+        if ("".equals(surname)) {
             surname = Main.SCANNER.nextLine();
         }
         for (Student student : Main.students) {
@@ -27,9 +29,19 @@ public class StudentService {
         }
         System.out.println();
     }
-    static void reversePrintBySurname(){
-        Set<Student> reverseSet= Main.students.descendingSet();
+
+    static void reversePrintBySurname() {
+        Set<Student> reverseSet = Main.students.descendingSet();
         for (Student student : reverseSet) {
+            System.out.println(student);
+        }
+        System.out.println();
+    }
+
+    static void sortByClass() {
+        Set<Student> sortByClassSet = new TreeSet<>(comparator);
+        sortByClassSet.addAll(Main.students);
+        for (Student student : sortByClassSet) {
             System.out.println(student);
         }
         System.out.println();
