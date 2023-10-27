@@ -27,6 +27,17 @@ public class Student implements Comparable<Student>{
         this.favoriteSubject = favoriteSubject;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    @Override
+    public String toString() {
+        return "Студент " + name + " " + surname +
+                ", класс №" + classNumber +
+                ", любимый предмет " + favoriteSubject.getName();
+    }
+
     @Override
     public int compareTo(Student o) {
         return this.surname.compareTo(o.surname);

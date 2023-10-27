@@ -1,6 +1,7 @@
 package Ex_11;
 
 public enum Subject {
+    DEFAULT(""),
     MATH("Математика"),
     GEOGRAPHY("География"),
     PHYSICS("Физика"),
