@@ -11,17 +11,24 @@ public class Main {
 
     public static void main(String[] args) {
         books = setBooks();
-        /*getMap().forEach((s, i) -> System.out.println(s + " - " + i));
+
         sortByVolume().forEach(System.out::println);
-        sortByBookName().forEach(System.out::println);
         sortByAuthor().forEach(System.out::println);
+        sortByBookName().forEach(System.out::println);
+        reverseSortByBookName().forEach(System.out::println);
 
         filterByAuthor("Herbert");
-        groupingByAuthor();*/
+        groupingByAuthor();
 
         findTheThinnestBook();
         findTheThickestBook();
 
+        hasBook("Dune");
+
+        List<Book> fictionBooks = filterByFiction(books);
+        isAllBookFiction(fictionBooks);
+        List<Book> nonfictionBooks = filterByNonfiction(books);
+        isAllBookNonfiction(nonfictionBooks);
     }
 
     private static List<Book> setBooks() {
@@ -47,28 +54,82 @@ public class Main {
     }
 
     private static List<Book> sortByVolume() {
-        return books.stream().sorted(Comparator.comparingInt(Book::getVolume)).collect(Collectors.toList());
+        return books.stream()
+                .sorted(Comparator.comparingInt(Book::getVolume))
+                .collect(Collectors.toList());
     }
 
     private static List<Book> sortByBookName() {
-        return books.stream().sorted(Comparator.comparing(Book::getName)).collect(Collectors.toList());
+        return books.stream()
+                .sorted(Comparator.comparing(Book::getName))
+                .collect(Collectors.toList());
+    }
+
+    private static List<Book> reverseSortByBookName() {
+        return books.stream()
+                .sorted(Comparator.comparing(Book::getName).reversed())
+                .collect(Collectors.toList());
     }
 
     private static List<Book> sortByAuthor() {
-        return books.stream().sorted(Comparator.comparing(Book::getAuthor)).collect(Collectors.toList());
+        return books.stream()
+                .sorted(Comparator.comparing(Book::getAuthor))
+                .collect(Collectors.toList());
+    }
+
+    private static List<Book> filterByFiction(List<Book> books) {
+        return books.stream()
+                .filter(Book::isFiction)
+                .collect(Collectors.toList());
+    }
+
+    private static List<Book> filterByNonfiction(List<Book> books) {
+        return books.stream()
+                .filter(book -> (!book.isFiction()))
+                .collect(Collectors.toList());
     }
 
     private static void filterByAuthor(String author) {
-        books.stream().filter(book -> book.getAuthor().contains(author)).forEach(System.out::println);
+        books.stream()
+                .filter(book -> book.getAuthor().contains(author))
+                .forEach(System.out::println);
     }
 
     private static void findTheThinnestBook() {
         System.out.println("The thinnest book is: ");
-        books.stream().min(Comparator.comparing(Book::getVolume)).ifPresent(System.out::println);
+        books.stream()
+                .min(Comparator.comparing(Book::getVolume))
+                .ifPresent(System.out::println);
     }
 
     private static void findTheThickestBook() {
         System.out.println("The thickest book is: ");
-        books.stream().max(Comparator.comparing(Book::getVolume)).ifPresent(System.out::println);
+        books.stream()
+                .max(Comparator.comparing(Book::getVolume))
+                .ifPresent(System.out::println);
+    }
+
+    private static void hasBook(String bookName) {
+        if (books.stream().anyMatch(book -> bookName.equals(book.getName()))) {
+            System.out.println("Book is here");
+        } else {
+            System.out.println("Book is not here");
+        }
+    }
+
+    private static void isAllBookFiction(List<Book> books) {
+        if (books.stream().allMatch(Book::isFiction)) {
+            System.out.println("All books are fiction");
+        } else {
+            System.out.println("Has some nonfiction book or books");
+        }
+    }
+
+    private static void isAllBookNonfiction(List<Book> books) {
+        if (books.stream().noneMatch(Book::isFiction)) {
+            System.out.println("All books are nonfiction");
+        } else {
+            System.out.println("Has some fiction book or books");
+        }
     }
 }
