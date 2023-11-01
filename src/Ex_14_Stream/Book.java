@@ -25,6 +25,10 @@ public class Book {
         return volume;
     }
 
+    public boolean isFiction() {
+        return isFiction;
+    }
+
     @Override
     public String toString() {
         return "Book: " +
