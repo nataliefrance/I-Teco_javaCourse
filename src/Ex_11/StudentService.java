@@ -7,8 +7,8 @@ import java.util.TreeSet;
 
 public class StudentService {
     static Student emptyStudent = new Student("no_name", "no_surname", 0, Subject.DEFAULT);
-    static Comparator classComparator = new ClassComparator();
-    static Comparator surnameComparator = new SurnameComparator();
+    static Comparator<Student> classComparator = new ClassComparator();
+    static Comparator<Student> surnameComparator = new SurnameComparator();
 
     static Student findStudent(String surname) {
         if ("".equals(surname)) {
