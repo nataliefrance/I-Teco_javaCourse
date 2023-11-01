@@ -16,19 +16,22 @@ public class Main {
         sortByBookName().forEach(System.out::println);
         sortByAuthor().forEach(System.out::println);
 
-        filterByAuthor("Herbert");*/
-        groupingByAuthor();
+        filterByAuthor("Herbert");
+        groupingByAuthor();*/
 
+        findTheThinnestBook();
+        findTheThickestBook();
 
     }
 
     private static List<Book> setBooks() {
-        return Arrays.asList(new Book("Dune", "Herbert Frank", 700, true),
-            new Book("Spring in action", "Walls Craig", 752, false),
-            new Book("Taynaya Opora", "Petranovskaya Lyudmila", 287, false),
-            new Book("Nell and circus of dreams", "Gifford Nell", 32, true),
-            new Book("Dune Messiah", "Herbert Frank", 733, true)
-            );
+        return Arrays.asList(new Book("Dune", "Herbert Frank", 600, true),
+                new Book("Spring in action", "Walls Craig", 752, false),
+                new Book("Taynaya Opora", "Petranovskaya Lyudmila", 287, false),
+                new Book("Nell and circus of dreams", "Gifford Nell", 32, true),
+                new Book("Dune Messiah", "Herbert Frank", 350, true),
+                new Book("Children of Dune", "Herbert Frank", 360, true)
+        );
     }
 
     private static void groupingByAuthor() {
@@ -38,7 +41,7 @@ public class Main {
             System.out.println("Author: " + author);
             books.forEach(book -> System.out.println("name: " + book.getName()
                     + ", volume: " + book.getVolume()
-                    + (book.isFiction()? ", fiction" : ", nonfiction")));
+                    + (book.isFiction() ? ", fiction" : ", nonfiction")));
             System.out.println();
         });
     }
@@ -57,5 +60,15 @@ public class Main {
 
     private static void filterByAuthor(String author) {
         books.stream().filter(book -> book.getAuthor().contains(author)).forEach(System.out::println);
+    }
+
+    private static void findTheThinnestBook() {
+        System.out.println("The thinnest book is: ");
+        books.stream().min(Comparator.comparing(Book::getVolume)).ifPresent(System.out::println);
+    }
+
+    private static void findTheThickestBook() {
+        System.out.println("The thickest book is: ");
+        books.stream().max(Comparator.comparing(Book::getVolume)).ifPresent(System.out::println);
     }
 }
