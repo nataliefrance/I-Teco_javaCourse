@@ -14,17 +14,17 @@ package Project_3;
 (Название – цена - оценка)
  */
 public abstract class Building {
-    private final String name;
-    private final String metroStation;
-    private final String address;
-    private final double Square;
-    private final int price;
-    private final double rating;
+    private String name;
+    private String metroStation;
+    private String address;
+    private double Square;
+    private int price;
+    private double rating;
     protected Type type;
 
     @Override
     public String toString() {
-        return "Помещение: " + name + ", " +
+        return name + ", " +
                 "цена: " + price +
                 ", средняя оценка: " + rating + ".";
     }
@@ -36,5 +36,48 @@ public abstract class Building {
         Square = square;
         this.price = price;
         this.rating = rating;
+    }
+
+    public Building() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMetroStation(String metroStation) {
+        this.metroStation = metroStation;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setSquare(double square) {
+        Square = square;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getMetroStation() {
+        return metroStation;
+    }
+
+    public double getRating() {
+        return rating;
     }
 }
