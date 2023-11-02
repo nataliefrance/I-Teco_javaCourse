@@ -6,48 +6,44 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CommercialService {
-    /*static void addCommerial() {
-        Apartment apartment = new Apartment();
+    static void addCommercial() {
+        CommercialPremises commercial = new CommercialPremises();
         System.out.println("Введите название:");
         String name = Main.SCANNER.nextLine();
         if ("".equals(name)) {
             name = Main.SCANNER.nextLine();
-            apartment.setName(name);
+            commercial.setName(name);
         }
 
         System.out.println("Введите станцию метро:");
         String station = Main.SCANNER.nextLine();
         if ("".equals(station)) {
             station = Main.SCANNER.nextLine();
-            apartment.setMetroStation(station);
+            commercial.setMetroStation(station);
         }
 
         System.out.println("Введите адрес:");
         String address = Main.SCANNER.nextLine();
         if ("".equals(address)) {
             address = Main.SCANNER.nextLine();
-            apartment.setAddress(address);
+            commercial.setAddress(address);
         }
 
         System.out.println("Введите площадь:");
         double square = Main.SCANNER.nextDouble();
-        apartment.setSquare(square);
+        commercial.setSquare(square);
 
         System.out.println("Введите цену:");
         int price = Main.SCANNER.nextInt();
-        apartment.setPrice(price);
+        commercial.setPrice(price);
 
         System.out.println("Введите рейтинг:");
         double rating = Main.SCANNER.nextDouble();
-        apartment.setRating(rating);
+        commercial.setRating(rating);
 
-        System.out.println("Введите количество комнат:");
-        int rooms = Main.SCANNER.nextInt();
-        apartment.setNumberOfRooms(rooms);
-
-        Main.buildingsList.add(apartment);
+        Main.buildingsList.add(commercial);
         System.out.println("Готово!");
-    }*/
+    }
 
     static void remove(String name) {
         Main.buildingsList.removeIf(commercial -> commercial.getName().equals(name));

@@ -10,6 +10,7 @@ public class BuildingsService {
         Main.buildingsList.stream()
                 .filter(e -> e.type == Type.APARTMENT)
                 .forEach(System.out::println);
+        System.out.println();
         System.out.println("Все доступные коммерческие помещения:");
         Main.buildingsList.stream()
                 .filter(e -> e.type == Type.COMMERCIAL)

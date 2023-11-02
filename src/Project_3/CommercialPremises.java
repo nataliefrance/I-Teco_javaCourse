@@ -6,4 +6,8 @@ public class CommercialPremises extends Building {
         super(name, metroStation, address, square, price, rating);
         super.type = Type.COMMERCIAL;
     }
+
+    public CommercialPremises() {
+        super.type = Type.COMMERCIAL;
+    }
 }

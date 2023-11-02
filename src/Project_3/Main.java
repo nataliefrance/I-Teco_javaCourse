@@ -5,23 +5,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-/*
-*Добавить квартиру в список для аренды.
-*Удалить квартиру из списка для аренды.
-*Отсортировать квартиры по цене (по возрастанию) и вывести.
-*Отсортировать квартиры по цене (по убыванию) и вывести.
-*Сгруппировать квартиры по станции метро и вывести.
-*Выбрать лучшую квартиру по оценке и вывести.
-*Вывести изначальный список квартир для аренды.
-
-Такой же функционал должен быть для типа «коммерческое помещение»
-Общий функционал:
-
-*Удалить всё из списков.
-*Вывести сгруппированные списки. (Квартиры – список, Коммерческие
-помещение - список).
-
- */
 public class Main {
 
     static final List<Building> buildingsList = new ArrayList<>();
@@ -80,7 +63,7 @@ public class Main {
                 "7. Вывести список квартир для аренды.\n" +
                 "8. Вернуться назад."
         );
-        try{
+        try {
             int input = SCANNER.nextInt();
             switch (input) {
                 case 1:
@@ -143,11 +126,11 @@ public class Main {
                 "8. Вернуться назад."
         );
 
-        try{
+        try {
             int input = SCANNER.nextInt();
             switch (input) {
                 case 1:
-                    //CommercialService.addApartment();
+                    CommercialService.addCommercial();
                     printCommercialMenu();
                     break;
                 case 2:
