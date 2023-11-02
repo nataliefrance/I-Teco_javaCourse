@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ApartmentService {
-    static void addApartment() {
+public class CommercialService {
+    /*static void addCommerial() {
         Apartment apartment = new Apartment();
         System.out.println("Введите название:");
         String name = Main.SCANNER.nextLine();
@@ -47,49 +47,49 @@ public class ApartmentService {
 
         Main.buildingsList.add(apartment);
         System.out.println("Готово!");
-    }
+    }*/
 
     static void remove(String name) {
-        Main.buildingsList.removeIf(apartment -> apartment.getName().equals(name));
+        Main.buildingsList.removeIf(commercial -> commercial.getName().equals(name));
     }
 
     static void sortByPrice() {
         Main.buildingsList.stream()
-                .filter(building -> building.type.equals(Type.APARTMENT))
+                .filter(building -> building.type.equals(Type.COMMERCIAL))
                 .sorted(Comparator.comparingInt(Building::getPrice))
                 .forEach(System.out::println);
     }
 
     static void reverseSortByPrice() {
         Main.buildingsList.stream()
-                .filter(building -> building.type.equals(Type.APARTMENT))
+                .filter(building -> building.type.equals(Type.COMMERCIAL))
                 .sorted(Comparator.comparingInt(Building::getPrice).reversed())
                 .forEach(System.out::println);
     }
 
     static void print() {
         Main.buildingsList.stream()
-                .filter(building -> building.type.equals(Type.APARTMENT))
+                .filter(building -> building.type.equals(Type.COMMERCIAL))
                 .forEach(System.out::println);
     }
 
     static void groupByMetroStation() {
         Map<String, List<Building>> groupingByMetro = Main.buildingsList.stream()
-                .filter(building -> building.type.equals(Type.APARTMENT))
+                .filter(building -> building.type.equals(Type.COMMERCIAL))
                 .collect(Collectors.groupingBy(Building::getMetroStation));
 
-        groupingByMetro.forEach((metroStation, apartments) -> {
+        groupingByMetro.forEach((metroStation, commercials) -> {
             System.out.println("Метро: " + metroStation);
-            apartments.forEach(apartment -> System.out.println(apartment.getName()
-                    + ", цена: " + apartment.getPrice()
-                    + ", рейтинг: " + apartment.getRating()));
+            commercials.forEach(commercial -> System.out.println(commercial.getName()
+                    + ", цена: " + commercial.getPrice()
+                    + ", рейтинг: " + commercial.getRating()));
             System.out.println();
         });
     }
 
     static void bestByRating() {
         Main.buildingsList.stream()
-                .filter(building -> building.type.equals(Type.APARTMENT))
+                .filter(building -> building.type.equals(Type.COMMERCIAL))
                 .max(Comparator.comparingDouble(Building::getRating))
                 .ifPresent(System.out::println);
     }

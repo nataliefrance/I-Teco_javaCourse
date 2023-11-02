@@ -1,6 +1,7 @@
 package Project_3;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,29 +40,33 @@ public class Main {
                 "3. Удалить все квартиры  и коммерческие помещения из списка.\n" +
                 "4. Вывести все доступные помещения.\n" +
                 "5. Выйти.");
-        int input = SCANNER.nextInt();
-        switch (input) {
-            case 1:
-                printApartmentMenu();
-                break;
-            case 2:
-                printCommercialMenu();
-                break;
-            case 3:
-                BuildingsService.clearList();
-                System.out.println("Готово!");
-                printMainMenu();
-                break;
-            case 4:
-                BuildingsService.printAll();
-                System.out.println();
-                printMainMenu();
-                break;
-            case 5:
-                break;
-            default:
-                System.out.println("Некорректный ввод");
-                printMainMenu();
+        try {
+            int input = SCANNER.nextInt();
+            switch (input) {
+                case 1:
+                    printApartmentMenu();
+                    break;
+                case 2:
+                    printCommercialMenu();
+                    break;
+                case 3:
+                    BuildingsService.clearList();
+                    System.out.println("Готово!");
+                    printMainMenu();
+                    break;
+                case 4:
+                    BuildingsService.printAll();
+                    System.out.println();
+                    printMainMenu();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Некорректный ввод");
+                    printMainMenu();
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Вы ввели не число. Досвидули!");
         }
     }
 
@@ -75,51 +80,55 @@ public class Main {
                 "7. Вывести список квартир для аренды.\n" +
                 "8. Вернуться назад."
         );
-        int input = SCANNER.nextInt();
-        switch (input) {
-            case 1:
-                ApartmentService.addApartment();
-                printApartmentMenu();
-                break;
-            case 2:
-                System.out.println("Введите название:");
-                String name = SCANNER.nextLine();
-                if ("".equals(name)) {
-                    name = SCANNER.nextLine();
-                }
-                ApartmentService.removeApartment(name);
-                System.out.println("Готово!");
-                printApartmentMenu();
-                break;
-            case 3:
-                ApartmentService.sortByPrice();
-                System.out.println();
-                printApartmentMenu();
-                break;
-            case 4:
-                ApartmentService.reverseSortByPrice();
-                System.out.println();
-                printApartmentMenu();
-                break;
-            case 5:
-                ApartmentService.groupByMetroStation();
-                printApartmentMenu();
-                break;
-            case 6:
-                ApartmentService.bestByRating();
-                System.out.println();
-                printApartmentMenu();
-                break;
-            case 7:
-                ApartmentService.print();
-                System.out.println();
-                printApartmentMenu();
-                break;
-            case 8:
-                printMainMenu();
-                break;
-            default:
-                System.out.println("Некорректный ввод");
+        try{
+            int input = SCANNER.nextInt();
+            switch (input) {
+                case 1:
+                    ApartmentService.addApartment();
+                    printApartmentMenu();
+                    break;
+                case 2:
+                    System.out.println("Введите название:");
+                    String name = SCANNER.nextLine();
+                    if ("".equals(name)) {
+                        name = SCANNER.nextLine();
+                    }
+                    ApartmentService.remove(name);
+                    System.out.println("Готово!");
+                    printApartmentMenu();
+                    break;
+                case 3:
+                    ApartmentService.sortByPrice();
+                    System.out.println();
+                    printApartmentMenu();
+                    break;
+                case 4:
+                    ApartmentService.reverseSortByPrice();
+                    System.out.println();
+                    printApartmentMenu();
+                    break;
+                case 5:
+                    ApartmentService.groupByMetroStation();
+                    printApartmentMenu();
+                    break;
+                case 6:
+                    ApartmentService.bestByRating();
+                    System.out.println();
+                    printApartmentMenu();
+                    break;
+                case 7:
+                    ApartmentService.print();
+                    System.out.println();
+                    printApartmentMenu();
+                    break;
+                case 8:
+                    printMainMenu();
+                    break;
+                default:
+                    System.out.println("Некорректный ввод");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Упс! Вы ввели не число. Досвидули!");
         }
     }
 
@@ -130,8 +139,60 @@ public class Main {
                 "4. Отсортировать помещения по цене (по убыванию).\n" +
                 "5. Сгруппировать помещения по станции метро.\n" +
                 "6. Выбрать лучшее помещение по оценке.\n" +
-                "7. Вывести изначальный список помещений для аренды.\n"
+                "7. Вывести изначальный список помещений для аренды.\n" +
+                "8. Вернуться назад."
         );
+
+        try{
+            int input = SCANNER.nextInt();
+            switch (input) {
+                case 1:
+                    //CommercialService.addApartment();
+                    printCommercialMenu();
+                    break;
+                case 2:
+                    System.out.println("Введите название:");
+                    String name = SCANNER.nextLine();
+                    if ("".equals(name)) {
+                        name = SCANNER.nextLine();
+                    }
+                    CommercialService.remove(name);
+                    System.out.println("Готово!");
+                    printCommercialMenu();
+                    break;
+                case 3:
+                    CommercialService.sortByPrice();
+                    System.out.println();
+                    printCommercialMenu();
+                    break;
+                case 4:
+                    CommercialService.reverseSortByPrice();
+                    System.out.println();
+                    printCommercialMenu();
+                    break;
+                case 5:
+                    CommercialService.groupByMetroStation();
+                    printCommercialMenu();
+                    break;
+                case 6:
+                    CommercialService.bestByRating();
+                    System.out.println();
+                    printCommercialMenu();
+                    break;
+                case 7:
+                    CommercialService.print();
+                    System.out.println();
+                    printCommercialMenu();
+                    break;
+                case 8:
+                    printMainMenu();
+                    break;
+                default:
+                    System.out.println("Некорректный ввод");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Упс! Вы ввели не число. Досвидули!");
+        }
     }
 
     private static void init() {
