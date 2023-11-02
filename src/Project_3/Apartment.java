@@ -1,5 +1,11 @@
 package Project_3;
 
 public class Apartment extends Building {
-    private int numberOfRooms;
+    private final int numberOfRooms;
+
+    public Apartment(String name, String metroStation, String address, double square, int price, double rating, int numberOfRooms) {
+        super(name, metroStation, address, square, price, rating);
+        this.numberOfRooms = numberOfRooms;
+        super.type = Type.APARTMENT;
+    }
 }

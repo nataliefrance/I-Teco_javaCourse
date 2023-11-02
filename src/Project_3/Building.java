@@ -14,17 +14,27 @@ package Project_3;
 (Название – цена - оценка)
  */
 public abstract class Building {
-    private String name;
-    private String metroStation;
-    private String address;
-    private double Square;
-    private int price;
-    private double rating;
+    private final String name;
+    private final String metroStation;
+    private final String address;
+    private final double Square;
+    private final int price;
+    private final double rating;
+    protected Type type;
 
     @Override
     public String toString() {
         return "Помещение: " + name + ", " +
                 "цена: " + price +
                 ", средняя оценка: " + rating + ".";
+    }
+
+    public Building(String name, String metroStation, String address, double square, int price, double rating) {
+        this.name = name;
+        this.metroStation = metroStation;
+        this.address = address;
+        Square = square;
+        this.price = price;
+        this.rating = rating;
     }
 }
