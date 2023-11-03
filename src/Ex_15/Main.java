@@ -1,19 +1,17 @@
 package Ex_15;
 
-import javax.print.DocFlavor;
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File inputFile = createFile("Input");
         File outputFile = createFile("Output");
-
         MyClass myClass = new MyClass();
 
-        try (FileReader reader = new FileReader(inputFile);
+        try (FileReader reader = new FileReader("C:\\Users\\Shipo\\IdeaProjects\\I-Teco\\src\\Ex_15\\Input.txt");
              FileWriter writer = new FileWriter(outputFile)) {
 
             StringBuilder text = new StringBuilder();
