@@ -1,4 +1,4 @@
-package Ex_15;
+package Ex_15_StringBuilder;
 
 import java.util.ArrayList;
 import java.util.List;

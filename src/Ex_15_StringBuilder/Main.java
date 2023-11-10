@@ -1,10 +1,9 @@
-package Ex_15;
+package Ex_15_StringBuilder;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 
 public class Main {
     public static void main(String[] args) throws IOException {
