@@ -1,6 +1,7 @@
 package Ex_16_Threads;
 
-import java.util.Date;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Road {
     private int person = 0;
@@ -30,9 +31,11 @@ public class Road {
     }
 
     public void startMoving() {
-        Date start = new Date();
+        LocalTime startTime = LocalTime.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        System.out.println("Начинаем работу: " + dtf.format(startTime));
 
-        while ((new Date().getTime() - start.getTime()) < 30_000L) {
+        while ((LocalTime.now().isBefore(startTime.plusSeconds(30)))) {
             if (person >= 4) {
                 System.out.println("Светофор для пешеходов включён");
                 person = 0;
@@ -43,5 +46,8 @@ public class Road {
             }
         }
         System.out.println("Светофор выключился");
+        LocalTime endTime = LocalTime.now();
+        System.out.println("Завершили работу: " + dtf.format(endTime));
+        System.exit(0);
     }
 }
